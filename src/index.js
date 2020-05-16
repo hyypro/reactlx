@@ -1,10 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.less';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import Router from './router'
+import { store } from './store'
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistStore(store)}>
+      <Router />
+    </PersistGate>
+  </Provider>,
   document.getElementById('root')
-);
-
+)
