@@ -1,20 +1,19 @@
-import { FETCH_Table_LIST } from '@/constants/actionTypes'
+import { FETCH_HOME_ACTION } from '@/constants/actionTypes'
 
 const defaultState = {
-  users: []
+  keys: '3'
 }
 
 export default function (state = defaultState, action) {
-  let { users } = state
   switch (action.type) {
-    case FETCH_Table_LIST:
-      const { users } = action.payload
+    case FETCH_HOME_ACTION:
       return {
         ...state,
-        users
+        keys: action.payload
       }
+  
   
     default:
       return state
   }
-} 
+}

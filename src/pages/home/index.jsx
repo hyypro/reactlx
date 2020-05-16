@@ -11,7 +11,7 @@ export default @connect(({ login }) => ({
 
 class Home extends Component {
   render() {
-    console.log(this.props.username)
+  //  console.log(this.props.username)
     return (
       <div className="home">
         <div className="top">

@@ -1,19 +1,31 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { changekeys } from '@/actions/home'
 import { Menu, Icon } from 'antd'
 
 
 
 const { SubMenu } = Menu
 
-export default class index extends Component {
+export default @withRouter
+@connect(({ home }) => ({
+  keys: home.keys}), {
+    changekeys
+  })
+class index extends Component {
+  onChange = (text) =>{
+    this.props.changekeys(text.key)
+  }
   render() {
+    const { keys } = this.props
     return (
       <div>
           <Menu
           style={{ width: 200, height: 887 }}
-          defaultSelectedKeys={['3']}
+          selectedKeys={[`${keys}`]}
           mode={"inline"}
+          onSelect={this.onChange}
         >
           <Menu.Item key="1">
             <NavLink to="/home/chart">
