@@ -5,6 +5,7 @@ import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import Router from './router'
 import { store } from './store'
+import '@/utils/reset.css'
 
 ReactDOM.render(
   <Provider store={store}>
