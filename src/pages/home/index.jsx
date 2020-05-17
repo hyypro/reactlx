@@ -12,10 +12,11 @@ export default @connect(({ login }) => ({
 class Home extends Component {
   render() {
   //  console.log(this.props.username)
+  const { username } = this.props
     return (
       <div className="home">
         <div className="top">
-          
+          用户名: <span>{username}</span>
         </div>
         <div className="bot">
           <div className="botleft">
