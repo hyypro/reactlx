@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Table, Form, Button, Progress  } from 'antd'
+import { Table, Form, Button, Progress } from 'antd'
 import { post } from '@/utils/request'
 import api from '@/services/api'
 import { tablelist, updateJson } from '@/actions/table'
@@ -88,8 +88,8 @@ class Tables extends Component {
         render: text => {
           return (
             <div>
-              <a onClick={() => this.upDate(text)}>Update</a>
-              <a onClick={() => this.Delete(text.id)}>Delete</a>
+              <Button onClick={() => this.upDate(text)} style={{ margin: "0 10px" }}>Update</Button>
+              <Button onClick={() => this.Delete(text.id)}>Delete</Button>
             </div>
           )
         },
