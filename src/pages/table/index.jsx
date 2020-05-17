@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Table, Form, Button, Progress } from 'antd'
+import { Table, Form, Button, Progress, message } from 'antd'
 import { post } from '@/utils/request'
 import api from '@/services/api'
 import { tablelist, updateJson } from '@/actions/table'
@@ -38,9 +38,8 @@ class Tables extends Component {
   Delete = keyword => {
     console.log()
     post(api.delete, {id: keyword}).then(res => {
-     console.log(res);
+     message.success(res.info)
      this.props.tablelist()
-     
     })
   }
   

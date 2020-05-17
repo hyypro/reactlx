@@ -8,7 +8,7 @@ import './style.less'
 
 export default class Sample extends Component {
   state = {
-    total: '',
+    total: 0,
     data: []
   } 
   
@@ -37,7 +37,7 @@ export default class Sample extends Component {
         { 
           data.map(ele => {
             return (
-              <div className="box">
+              <div className="box" key={ele.id}>
                 <Card ele={ele}/>
               </div>
             )
