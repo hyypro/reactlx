@@ -25,11 +25,11 @@ class index extends Component {
     return (
       <div>
           <Menu
-          style={{ width: 200, height: 887 }}
-          selectedKeys={[`${keys}`]}
-          mode={"inline"}
-          onSelect={this.onChange}
-        >
+            style={{ width: 200, height: 887 }}
+            selectedKeys={[`${keys}`]}
+            mode={"inline"}
+            onSelect={this.onChange}
+          >
           <Menu.Item key="1">
             <NavLink to="/home/chart">
               <Icon type="pie-chart" />

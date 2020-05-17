@@ -25,7 +25,7 @@ export default @connect(({ table }) => ({
 
 @Form.create({
   mapPropsToFields(props) {
-    console.log(props.data)
+  //  console.log(props.data)
     return {
       name: Form.createFormField({
         ...props.data,
@@ -64,9 +64,9 @@ class FormList extends Component {
         //console.log('Received values of form: ', values)
       //  let address = this.state.imageUrl
         // console.log(values.time[0].response.url)
+        let hospital = values.hospital[0].response.url.split('/')[4]
         if(isNaN(this.props.data)) {
-          let hospital = values.hospital[0].response.url.split('/')[4]
-          post(api.update,{
+          post(api.update, {
             id: this.props.data.id,
             name: values.name,
             age: values.age,
@@ -77,7 +77,6 @@ class FormList extends Component {
             message.success(res.message)
           })
         } else {
-         let hospital = values.hospital[0].response.url.split('/')[4]
           post(api.add, {
             name: values.name,
             age: values.age,
@@ -87,7 +86,6 @@ class FormList extends Component {
           }).then(res => {      
             message.success(res.info)
           })
-          console.log(1)
         }
       }
     })
@@ -174,3 +172,5 @@ class FormList extends Component {
     )
   }
 }
+
+

@@ -7,7 +7,6 @@ export default class index extends Component {
     const { ele } = this.props
     return (
       <div className="card">
-       
         <Card title={ele.title}  style={{ width: 300 }} key={ele.id}>
           <p>{ele.tags}</p>
         </Card>
