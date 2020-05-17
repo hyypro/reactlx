@@ -35,6 +35,7 @@ axios.interceptors.response.use(response => {
 
 // post
 export function post (url, data) {
+
   return new Promise((resolve, reject) => {
     axios({
       url,

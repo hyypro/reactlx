@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Table, Form, Button } from 'antd'
+import { Table, Form, Button, Progress  } from 'antd'
 import { tablelist } from '@/actions/table'
 import { changekeys } from '@/actions/home'
 import './style.less'
@@ -21,16 +21,21 @@ class Tables extends Component {
   onclick = () => {
     this.props.changekeys('2')
     this.props.history.push('/home/form')
-    
   }
-  
+
 
   render() {
     const columns = [
       {
         title: 'User',
         dataIndex: 'hospital',
-        render: record => <img src={record} alt=""/>,
+        render: text => {
+          return (
+            <div>
+             <img src={`https://zos.alipayobjects.com/rmsportal/${text}`} alt="" className="img"/>
+            </div>
+          )
+        },
       },
       {
         title: 'Name',
@@ -40,6 +45,18 @@ class Tables extends Component {
       {
         title: 'Age',
         dataIndex: 'age',
+        render: record =>  {
+          return (
+            <div>
+            <Progress percent={Number(record)}/>
+            </div>
+          )
+        }
+      },
+      {
+        title: 'Gender',
+        dataIndex: 'gender',
+        
       },
       {
         title: 'Msg',
@@ -47,6 +64,7 @@ class Tables extends Component {
       }
     ]
     const { users } = this.props
+    //console.log(users)
     return (
       <div className="table">
       <Button type="primary" onClick={this.onclick} style={{ margin: '20px 0' }}>Add User</Button>

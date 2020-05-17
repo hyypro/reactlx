@@ -13,7 +13,7 @@ const rootPersistConfig = {
   storage,
   stateReconciler: autoMergeLevel2,
   // 白名单 [reducer 目录内的 reduce 文件名]
-  whitelist: ['login', 'table', 'home'],  
+  whitelist: ['login', 'table',],  
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

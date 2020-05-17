@@ -1,7 +1,7 @@
 import { FETCH_HOME_ACTION } from '@/constants/actionTypes'
 
 const defaultState = {
-  keys: '3'
+  keys: '2'
 }
 
 export default function (state = defaultState, action) {

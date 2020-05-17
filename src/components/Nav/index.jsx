@@ -4,13 +4,12 @@ import { connect } from 'react-redux'
 import { changekeys } from '@/actions/home'
 import { Menu, Icon } from 'antd'
 
-
-
 const { SubMenu } = Menu
 
 export default @withRouter
 @connect(({ home }) => ({
-  keys: home.keys}), {
+  keys: home.keys
+}), {
     changekeys
   })
 class index extends Component {

@@ -5,15 +5,14 @@ const defaultState = {
 }
 
 export default function (state = defaultState, action) {
-  let { users } = state
   switch (action.type) {
     case FETCH_Table_LIST:
-      const { users } = action.payload
+  
       return {
         ...state,
-        users
+        users: action.payload.users
       }
-  
+      
     default:
       return state
   }
