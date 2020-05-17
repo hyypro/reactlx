@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Table, Form, Button, Progress  } from 'antd'
-import { tablelist } from '@/actions/table'
+import { post } from '@/utils/request'
+import api from '@/services/api'
+import { tablelist, updateJson } from '@/actions/table'
 import { changekeys } from '@/actions/home'
 import './style.less'
 
@@ -9,7 +11,8 @@ export default @connect(({ table }) => ({
   users: table.users
 }), {
   tablelist,
-  changekeys
+  changekeys,
+  updateJson
 })
 @Form.create({})
 class Tables extends Component {
@@ -21,9 +24,26 @@ class Tables extends Component {
   onclick = () => {
     this.props.changekeys('2')
     this.props.history.push('/home/form')
+    this.props.updateJson([])
+    
   }
 
-
+  upDate = text => {
+   // console.log(text)
+   this.props.updateJson(text)
+   this.props.changekeys('2')
+   this.props.history.push('/home/form/1')
+  }
+  
+  Delete = keyword => {
+    console.log()
+    post(api.delete, {id: keyword}).then(res => {
+     console.log(res);
+     this.props.tablelist()
+     
+    })
+  }
+  
   render() {
     const columns = [
       {
@@ -61,6 +81,18 @@ class Tables extends Component {
       {
         title: 'Msg',
         dataIndex: 'msg',
+      },{
+        title: 'Action',
+        dataIndex: '',
+        key: 'x',
+        render: text => {
+          return (
+            <div>
+              <a onClick={() => this.upDate(text)}>Update</a>
+              <a onClick={() => this.Delete(text.id)}>Delete</a>
+            </div>
+          )
+        },
       }
     ]
     const { users } = this.props

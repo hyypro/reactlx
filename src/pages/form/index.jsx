@@ -11,15 +11,47 @@ import {
 } from 'antd'
 import api from '@/services/api'
 import { post } from '@/utils/request'
-import qs from 'qs'
 
 
 const { Option } = Select
 
-export default @Form.create({
-  
+const obj = {
+  1: "男",
+  2: "女"
+}
+export default @connect(({ table }) => ({
+  data: table.data
+}))
 
+@Form.create({
+  mapPropsToFields(props) {
+    console.log(props.data)
+    return {
+      name: Form.createFormField({
+        ...props.data,
+        value: props.data.name,
+      }),
+      age: Form.createFormField({
+        ...props.data,
+        value: props.data.age,
+      }),
+      msg: Form.createFormField({
+        ...props.data,
+        value: props.data.msg,
+      }),
+      gender: Form.createFormField({
+        ...props.data,
+        value: obj[props.data.gender],
+      }),
+      hospital: Form.createFormField({
+        ...props.data,
+        value: `https://zos.alipayobjects.com/rmsportal/${props.data.hospital}`,
+      })
+    }
+  }
 })
+
+
 
 class FormList extends Component {
  
@@ -27,20 +59,36 @@ class FormList extends Component {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
      // console.log(values.hospital[0].response.url)
-      let hospital = values.hospital[0].response.url.split('/')[4]
+     
       if (!err) {
         //console.log('Received values of form: ', values)
       //  let address = this.state.imageUrl
         // console.log(values.time[0].response.url)
-        post(api.add, {
-          name: values.name,
-          age: values.age,
-          gender: values.gender,
-          msg: values.msg,
-          hospital
-        }).then(res => {
-          message.success(res.info)
-        })
+        if(isNaN(this.props.data)) {
+          let hospital = values.hospital[0].response.url.split('/')[4]
+          post(api.update,{
+            id: this.props.data.id,
+            name: values.name,
+            age: values.age,
+            gender: values.gender,
+            msg: values.msg,
+            hospital
+          }).then(res => {
+            message.success(res.message)
+          })
+        } else {
+         let hospital = values.hospital[0].response.url.split('/')[4]
+          post(api.add, {
+            name: values.name,
+            age: values.age,
+            gender: values.gender,
+            msg: values.msg,
+            hospital
+          }).then(res => {      
+            message.success(res.info)
+          })
+          console.log(1)
+        }
       }
     })
   }
@@ -104,7 +152,7 @@ class FormList extends Component {
         )}
       </Form.Item>
   
-      <Form.Item label="Upload" extra="longgggggggggggggggggggggggggggggggggg">
+      <Form.Item label="Upload" extra="">
       {getFieldDecorator('hospital', {
         valuePropName: `fileList[0].response.url`,
         getValueFromEvent: this.normFile,
@@ -118,7 +166,7 @@ class FormList extends Component {
     </Form.Item>
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
         <Button type="primary" htmlType="submit">
-          Submit
+          { isNaN(this.props.data) ? '修改' : '添加'}
         </Button>
       </Form.Item>
     </Form>

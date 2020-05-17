@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { changekeys } from '@/actions/home'
+import { updateJson } from '@/actions/table'
+
 import { Menu, Icon } from 'antd'
 
 const { SubMenu } = Menu
@@ -10,11 +12,13 @@ export default @withRouter
 @connect(({ home }) => ({
   keys: home.keys
 }), {
-    changekeys
+    changekeys,
+    updateJson
   })
 class index extends Component {
   onChange = (text) =>{
     this.props.changekeys(text.key)
+    this.props.updateJson([])
   }
   render() {
     const { keys } = this.props

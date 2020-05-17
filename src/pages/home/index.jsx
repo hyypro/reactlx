@@ -26,7 +26,7 @@ class Home extends Component {
             <Route path="/home/form" component={Form}/>
             <Route path="/home/tab" component={Table}/>
             <Route path="/home/sample" component={Sample}/>
-            <Redirect to="/home/form" />
+            <Redirect to="/home/tab" />
           </div>
         </div>
       </div>
