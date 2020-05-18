@@ -55,24 +55,26 @@ class FormList extends Component {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        let hospital = values.hospital[0].response.url.split('/')[4]
+        const hospital = values.hospital[0].response.url.split('/')[4]
+        const { name, age, gender, msg } = values
+        const { id } = this.props
         if(isNaN(this.props.data)) {
           post(api.update, {
-            id: this.props.data.id,
-            name: values.name,
-            age: values.age,
-            gender: values.gender,
-            msg: values.msg,
+            id,
+            name,
+            age,
+            gender,
+            msg,
             hospital
           }).then(res => {
             message.success(res.message)
           })
         } else {
           post(api.add, {
-            name: values.name,
-            age: values.age,
-            gender: values.gender,
-            msg: values.msg,
+            name,
+            age,
+            gender,
+            msg,
             hospital
           }).then(res => {      
             message.success(res.info)

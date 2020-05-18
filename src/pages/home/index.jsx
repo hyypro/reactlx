@@ -15,10 +15,10 @@ class Home extends Component {
   const { username } = this.props
     return (
       <div className="home">
-        <div className="top">
-          用户名: <span>{username}</span>
-        </div>
-        <div className="bot">
+          <div className="top">
+            用户名: <span>{username}</span>
+          </div>
+          <div className="bot">
           <div className="botleft">
             <Nav />
           </div>
