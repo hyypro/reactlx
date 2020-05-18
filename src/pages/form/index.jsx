@@ -42,10 +42,6 @@ export default @connect(({ table }) => ({
       gender: Form.createFormField({
         ...props.data,
         value: obj[props.data.gender],
-      }),
-      hospital: Form.createFormField({
-        ...props.data,
-        value: `https://zos.alipayobjects.com/rmsportal/${props.data.hospital}`,
       })
     }
   }
@@ -58,12 +54,7 @@ class FormList extends Component {
   handleSubmit = e => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
-     // console.log(values.hospital[0].response.url)
-     
       if (!err) {
-        //console.log('Received values of form: ', values)
-      //  let address = this.state.imageUrl
-        // console.log(values.time[0].response.url)
         let hospital = values.hospital[0].response.url.split('/')[4]
         if(isNaN(this.props.data)) {
           post(api.update, {

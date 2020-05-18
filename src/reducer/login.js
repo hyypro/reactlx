@@ -5,7 +5,6 @@ const defaultState = {
 }
 
 export default function (state = defaultState, action) {
-  let { user_name } = state
   switch (action.type) {
     case FETCH_LOGIN_ACTION:
       const { user_name } = action.payload.data
